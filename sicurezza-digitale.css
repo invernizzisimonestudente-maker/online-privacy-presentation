@@ -1,0 +1,392 @@
+/**
+ * Tema: Sicurezza Digitale
+ * Reveal.js custom theme — Light & Minimal
+ * Stile: Editorial Tech / Clean Security Aesthetic
+ *
+ * Per usarlo: aggiungi <link rel="stylesheet" href="sicurezza-digitale.css">
+ * nella <head> del tuo HTML, DOPO il foglio di stile base di reveal.js.
+ */
+
+/* ─── Google Fonts ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap');
+
+/* ─── Variabili ─────────────────────────────────────────────────────── */
+:root {
+  --r-background-color:       #F5F4F0;
+  --r-main-color:             #1A1A2E;
+  --r-muted-color:            #6B6B80;
+  --r-accent:                 #0066FF;
+  --r-accent-soft:            #D6E4FF;
+  --r-accent-2:               #00C9A7;
+  --r-border:                 #D8D8E0;
+  --r-surface:                #FFFFFF;
+  --r-code-bg:                #EEEEF3;
+
+  --r-main-font:              'DM Sans', sans-serif;
+  --r-heading-font:           'Syne', sans-serif;
+  --r-code-font:              'DM Mono', monospace;
+
+  --r-main-font-size:         22px;
+  --r-heading-line-height:    1.1;
+  --r-heading-letter-spacing: -0.03em;
+  --r-heading-text-transform: none;
+  --r-heading-font-weight:    800;
+  --r-heading-text-shadow:    none;
+
+  --r-heading1-size:          3.2rem;
+  --r-heading2-size:          2.2rem;
+  --r-heading3-size:          1.5rem;
+  --r-heading4-size:          1.1rem;
+
+  --r-link-color:             var(--r-accent);
+  --r-link-color-hover:       #0047CC;
+  --r-selection-background-color: var(--r-accent-soft);
+  --r-selection-color:        var(--r-main-color);
+
+  --r-block-margin:           1.4rem;
+  --r-slide-width:            1280px;
+  --r-slide-height:           720px;
+}
+
+/* ─── Base Slide ────────────────────────────────────────────────────── */
+.reveal-viewport {
+  background: var(--r-background-color);
+}
+
+.reveal .slides {
+  font-family:  var(--r-main-font);
+  font-size:    var(--r-main-font-size);
+  color:        var(--r-main-color);
+  font-weight:  300;
+  letter-spacing: 0.01em;
+}
+
+/* Pattern griglia leggerissimo come texture di sfondo */
+.reveal .slides > section {
+  background-image:
+    linear-gradient(var(--r-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--r-border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+  border-radius: 0;
+  padding: 60px 80px;
+  box-sizing: border-box;
+}
+
+/* ─── Headings ──────────────────────────────────────────────────────── */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family:    var(--r-heading-font);
+  font-weight:    var(--r-heading-font-weight);
+  line-height:    var(--r-heading-line-height);
+  letter-spacing: var(--r-heading-letter-spacing);
+  text-transform: none;
+  color:          var(--r-main-color);
+  margin-bottom:  0.5em;
+}
+
+.reveal h1 { font-size: var(--r-heading1-size); }
+.reveal h2 { font-size: var(--r-heading2-size); }
+.reveal h3 { font-size: var(--r-heading3-size); }
+.reveal h4 { font-size: var(--r-heading4-size); letter-spacing: 0.12em; text-transform: uppercase; color: var(--r-muted-color); }
+
+/* Accent underline su h2 */
+.reveal h2::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--r-accent);
+  margin-top: 12px;
+  border-radius: 2px;
+}
+
+/* ─── Slide Titolo (prima slide) ────────────────────────────────────── */
+.reveal .slides > section.title-slide,
+.reveal .slides > section:first-child {
+  background-color: var(--r-main-color);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 80px;
+}
+
+.reveal .slides > section:first-child h1,
+.reveal .slides > section:first-child h2,
+.reveal .slides > section:first-child h3,
+.reveal .slides > section:first-child p {
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.reveal .slides > section:first-child h2::after {
+  background: var(--r-accent);
+}
+
+/* Badge "etichetta categoria" nella slide titolo */
+.reveal .slides > section:first-child h4 {
+  color: var(--r-accent);
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* ─── Paragrafi & Testo ─────────────────────────────────────────────── */
+.reveal p {
+  line-height: 1.7;
+  margin: 0 0 var(--r-block-margin);
+  font-weight: 300;
+}
+
+.reveal strong {
+  font-weight: 600;
+  color: var(--r-main-color);
+}
+
+.reveal em {
+  font-style: italic;
+  color: var(--r-muted-color);
+}
+
+/* ─── Liste ─────────────────────────────────────────────────────────── */
+.reveal ul,
+.reveal ol {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 var(--r-block-margin) 1.2em;
+}
+
+.reveal li {
+  line-height: 1.8;
+  margin-bottom: 0.3em;
+  font-weight: 300;
+}
+
+.reveal ul li::marker {
+  color: var(--r-accent);
+}
+
+.reveal ol li::marker {
+  font-family: var(--r-heading-font);
+  font-weight: 700;
+  color: var(--r-accent);
+}
+
+/* ─── Blocchi di Codice ─────────────────────────────────────────────── */
+.reveal code {
+  font-family:      var(--r-code-font);
+  font-size:        0.85em;
+  background:       var(--r-code-bg);
+  color:            var(--r-accent);
+  padding:          0.15em 0.4em;
+  border-radius:    4px;
+  font-weight:      500;
+}
+
+.reveal pre {
+  font-family:      var(--r-code-font);
+  background:       var(--r-main-color);
+  color:            #E8E8F0;
+  border-radius:    10px;
+  padding:          1.4em 1.8em;
+  font-size:        0.78em;
+  box-shadow:       0 8px 32px rgba(26,26,46,0.18);
+  text-align:       left;
+  width:            100%;
+  overflow-x:       auto;
+  border:           1px solid rgba(255,255,255,0.06);
+}
+
+.reveal pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: 1em;
+}
+
+/* ─── Blockquote ────────────────────────────────────────────────────── */
+.reveal blockquote {
+  background:    var(--r-surface);
+  border-left:   4px solid var(--r-accent);
+  border-radius: 0 8px 8px 0;
+  padding:       1.2em 1.6em;
+  margin:        var(--r-block-margin) auto;
+  font-style:    italic;
+  color:         var(--r-muted-color);
+  font-size:     1.05em;
+  box-shadow:    0 2px 12px rgba(0,0,0,0.06);
+  width:         auto;
+  text-align:    left;
+}
+
+/* ─── Tabelle ───────────────────────────────────────────────────────── */
+.reveal table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.88em;
+  margin: var(--r-block-margin) auto;
+}
+
+.reveal table thead th {
+  background:    var(--r-main-color);
+  color:         #fff;
+  font-family:   var(--r-heading-font);
+  font-weight:   700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size:     0.78em;
+  padding:       0.8em 1.2em;
+  text-align:    left;
+}
+
+.reveal table tbody tr:nth-child(even) {
+  background: var(--r-code-bg);
+}
+
+.reveal table td {
+  padding:       0.7em 1.2em;
+  border-bottom: 1px solid var(--r-border);
+  color:         var(--r-main-color);
+  font-weight:   300;
+}
+
+/* ─── Link ──────────────────────────────────────────────────────────── */
+.reveal a {
+  color:          var(--r-link-color);
+  text-decoration: none;
+  border-bottom:  1px solid currentColor;
+  transition:     color 0.2s;
+}
+.reveal a:hover {
+  color: var(--r-link-color-hover);
+}
+
+/* ─── Immagini ──────────────────────────────────────────────────────── */
+.reveal img {
+  border-radius: 10px;
+  box-shadow:    0 8px 32px rgba(26,26,46,0.12);
+  max-width:     100%;
+}
+
+/* ─── Cards Helper Class ────────────────────────────────────────────── */
+/* Uso: <div class="r-card">...</div> */
+.reveal .r-card {
+  background:    var(--r-surface);
+  border:        1px solid var(--r-border);
+  border-radius: 12px;
+  padding:       1.4em 1.8em;
+  text-align:    left;
+  box-shadow:    0 2px 16px rgba(0,0,0,0.06);
+}
+
+/* Layout 2 colonne: <div class="r-cols"><div>...</div><div>...</div></div> */
+.reveal .r-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  text-align: left;
+}
+.reveal .r-cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.6rem;
+  text-align: left;
+}
+
+/* Badge / Chip */
+.reveal .r-badge {
+  display:       inline-block;
+  background:    var(--r-accent-soft);
+  color:         var(--r-accent);
+  font-family:   var(--r-heading-font);
+  font-weight:   700;
+  font-size:     0.7em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding:       0.3em 0.8em;
+  border-radius: 100px;
+  margin:        0.2em;
+}
+.reveal .r-badge.danger {
+  background: #FFE0E0;
+  color:      #CC2200;
+}
+.reveal .r-badge.ok {
+  background: #D6F5EE;
+  color:      #006B55;
+}
+
+/* Numero grande per statistiche */
+.reveal .r-stat {
+  font-family:    var(--r-heading-font);
+  font-weight:    800;
+  font-size:      4rem;
+  color:          var(--r-accent);
+  line-height:    1;
+  letter-spacing: -0.04em;
+}
+.reveal .r-stat-label {
+  font-size:   0.85em;
+  color:       var(--r-muted-color);
+  font-weight: 300;
+  margin-top:  0.3em;
+}
+
+/* Slide sezione / divisore */
+.reveal .section-slide {
+  background-color:   var(--r-accent) !important;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px) !important;
+}
+.reveal .section-slide h2,
+.reveal .section-slide p {
+  color: #fff;
+}
+.reveal .section-slide h2::after {
+  background: rgba(255,255,255,0.5);
+}
+
+/* ─── Progress Bar & Controls ───────────────────────────────────────── */
+.reveal .progress {
+  background: var(--r-border);
+  height:     3px;
+}
+.reveal .progress span {
+  background:        var(--r-accent);
+  transition:        width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.reveal .controls {
+  color: var(--r-accent);
+}
+
+/* ─── Slide Numbers ─────────────────────────────────────────────────── */
+.reveal .slide-number {
+  font-family:    var(--r-code-font);
+  font-size:      0.7rem;
+  color:          var(--r-muted-color);
+  background:     transparent;
+  bottom:         24px;
+  right:          32px;
+}
+
+/* ─── Transizioni smooth ────────────────────────────────────────────── */
+.reveal .slides section {
+  transition: none;
+}
+
+/* ─── Evidenziazione sintassi (highlight.js — tema chiaro) ─────────── */
+.reveal .hljs-keyword  { color: #0066FF; font-weight: 500; }
+.reveal .hljs-string   { color: #00C9A7; }
+.reveal .hljs-comment  { color: #8888AA; font-style: italic; }
+.reveal .hljs-number   { color: #E07B00; }
+.reveal .hljs-function { color: #CC44FF; }
+.reveal .hljs-variable { color: #E8E8F0; }
