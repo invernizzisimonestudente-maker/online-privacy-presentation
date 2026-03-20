@@ -1,0 +1,315 @@
+/**
+ * Animazioni — "Vault"
+ * Da caricare DOPO sicurezza-digitale.css
+ *
+ *   <link rel="stylesheet" href="sicurezza-digitale.css">
+ *   <link rel="stylesheet" href="sicurezza-digitale-animations.css">
+ *
+ * ─────────────────────────────────────────────────────────────────────
+ * COME USARE LE ANIMAZIONI SUGLI ELEMENTI
+ *
+ * Aggiungi class="fragment" + una classe di animazione:
+ *
+ *   <p class="fragment fade-up">Testo che entra dal basso</p>
+ *   <li class="fragment reveal-left">Voce che arriva da sinistra</li>
+ *   <div class="fragment pop">Card che appare con un pop</div>
+ *
+ * Puoi ritardare l'entrata con data-delay (ms):
+ *   <p class="fragment fade-up" data-delay="200">...</p>
+ *
+ * ─────────────────────────────────────────────────────────────────────
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   1. TRANSIZIONE TRA SLIDE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Reveal usa .future / .present / .past sulle sezioni.
+   Sovrascriviamo la transizione di default con una slide
+   orizzontale pulita + leggero fade. */
+
+.reveal .slides section {
+  transition:
+    transform 0.55s cubic-bezier(0.76, 0, 0.24, 1),
+    opacity   0.55s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform, opacity;
+}
+
+.reveal .slides section.future  {
+  transform: translateX(6%) scale(0.98);
+  opacity: 0;
+}
+.reveal .slides section.past    {
+  transform: translateX(-6%) scale(0.98);
+  opacity: 0;
+}
+.reveal .slides section.present {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+}
+
+/* Slide verticali (sezioni annidate) */
+.reveal .slides section section.future {
+  transform: translateY(6%) scale(0.98);
+}
+.reveal .slides section section.past {
+  transform: translateY(-6%) scale(0.98);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   2. ENTRATA AUTOMATICA DEGLI ELEMENTI DELLA SLIDE
+   Ogni elemento della slide appare con un piccolo fade-up
+   appena la slide diventa .present.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.reveal .slides section.present > *,
+.reveal .slides section.present .cols > *,
+.reveal .slides section.present .cols-3 > * {
+  animation: auto-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Ritardo progressivo sui figli diretti della slide */
+.reveal .slides section.present > *:nth-child(1)  { animation-delay: 0.05s; }
+.reveal .slides section.present > *:nth-child(2)  { animation-delay: 0.14s; }
+.reveal .slides section.present > *:nth-child(3)  { animation-delay: 0.22s; }
+.reveal .slides section.present > *:nth-child(4)  { animation-delay: 0.30s; }
+.reveal .slides section.present > *:nth-child(5)  { animation-delay: 0.37s; }
+
+/* Colonne: ogni colonna ha il suo ritardo */
+.reveal .slides section.present .cols > *:nth-child(1)  { animation-delay: 0.22s; }
+.reveal .slides section.present .cols > *:nth-child(2)  { animation-delay: 0.36s; }
+.reveal .slides section.present .cols-3 > *:nth-child(1){ animation-delay: 0.22s; }
+.reveal .slides section.present .cols-3 > *:nth-child(2){ animation-delay: 0.34s; }
+.reveal .slides section.present .cols-3 > *:nth-child(3){ animation-delay: 0.46s; }
+
+@keyframes auto-enter {
+  from {
+    opacity:   0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity:   1;
+    transform: translateY(0);
+  }
+}
+
+/* Non animare le slide di copertina e sezione (già d'impatto) */
+.reveal .slides section.slide-cover > *,
+.reveal .slides section.slide-section > * {
+  animation: none !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   3. FRAGMENTS — animazioni on click
+   Usali con class="fragment <nome>"
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Stato iniziale: tutti i fragment sono invisibili */
+.reveal .fragment {
+  opacity: 0;
+  visibility: hidden;
+  transition: none;
+}
+.reveal .fragment.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- fade-up (default consigliato) ─────────────────────────────────── */
+.reveal .fragment.fade-up {
+  transform: translateY(24px);
+  transition:
+    opacity   0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal .fragment.fade-up.visible {
+  transform: translateY(0);
+}
+
+/* --- fade-down ─────────────────────────────────────────────────────── */
+.reveal .fragment.fade-down {
+  transform: translateY(-24px);
+  transition:
+    opacity   0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal .fragment.fade-down.visible {
+  transform: translateY(0);
+}
+
+/* --- reveal-left (dal margine sinistro) ────────────────────────────── */
+.reveal .fragment.reveal-left {
+  transform: translateX(-32px);
+  transition:
+    opacity   0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal .fragment.reveal-left.visible {
+  transform: translateX(0);
+}
+
+/* --- reveal-right ──────────────────────────────────────────────────── */
+.reveal .fragment.reveal-right {
+  transform: translateX(32px);
+  transition:
+    opacity   0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal .fragment.reveal-right.visible {
+  transform: translateX(0);
+}
+
+/* --- pop (scala da 0.88 a 1) ───────────────────────────────────────── */
+.reveal .fragment.pop {
+  transform: scale(0.88);
+  transition:
+    opacity   0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.reveal .fragment.pop.visible {
+  transform: scale(1);
+}
+
+/* --- blur-in ───────────────────────────────────────────────────────── */
+.reveal .fragment.blur-in {
+  filter: blur(8px);
+  transform: scale(1.02);
+  transition:
+    opacity   0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    filter    0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal .fragment.blur-in.visible {
+  filter:    blur(0);
+  transform: scale(1);
+}
+
+/* --- highlight-line: sottolinea con accento ─────────────────────────
+   Utile su singole parole o frasi chiave.
+   <span class="fragment highlight-line">password</span>             */
+.reveal .fragment.highlight-line {
+  opacity:    1 !important;
+  visibility: visible !important;
+  background-size: 0% 100%;
+  background-image: linear-gradient(
+    transparent 60%,
+    rgba(18, 70, 240, 0.2) 60%
+  );
+  background-repeat: no-repeat;
+  transition: background-size 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  padding: 0 2px;
+}
+.reveal .fragment.highlight-line.visible {
+  background-size: 100% 100%;
+}
+
+/* --- counter: numero che "conta" da 0 ──────────────────────────────
+   Non richiede JS: è un effetto solo CSS con clip.
+   Usalo sul .stat per un ingresso drammatico.
+   <div class="stat fragment count-in">98%</div>                     */
+.reveal .fragment.count-in {
+  transform:   scaleY(0);
+  transform-origin: bottom;
+  transition:
+    opacity   0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal .fragment.count-in.visible {
+  transform: scaleY(1);
+}
+
+/* --- stagger: applicalo al contenitore, colpisce i figli diretti ────
+   <ul class="stagger">
+     <li class="fragment">...</li>  ← ogni li ha delay automatico
+   </ul>
+   Il container .stagger non fa nulla da solo; è il parent logico.     */
+.reveal .stagger .fragment:nth-child(1)  { transition-delay: 0s;     }
+.reveal .stagger .fragment:nth-child(2)  { transition-delay: 0.08s;  }
+.reveal .stagger .fragment:nth-child(3)  { transition-delay: 0.16s;  }
+.reveal .stagger .fragment:nth-child(4)  { transition-delay: 0.24s;  }
+.reveal .stagger .fragment:nth-child(5)  { transition-delay: 0.32s;  }
+.reveal .stagger .fragment:nth-child(6)  { transition-delay: 0.40s;  }
+.reveal .stagger .fragment:nth-child(7)  { transition-delay: 0.48s;  }
+.reveal .stagger .fragment:nth-child(8)  { transition-delay: 0.56s;  }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   4. COPERTINA — animazione d'entrata speciale
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.reveal .slides section.slide-cover.present > * {
+  animation: cover-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal .slides section.slide-cover.present > *:nth-child(1) { animation-delay: 0.1s; }
+.reveal .slides section.slide-cover.present > *:nth-child(2) { animation-delay: 0.25s; }
+.reveal .slides section.slide-cover.present > *:nth-child(3) { animation-delay: 0.40s; }
+.reveal .slides section.slide-cover.present > *:nth-child(4) { animation-delay: 0.52s; }
+
+@keyframes cover-enter {
+  from {
+    opacity:   0;
+    transform: translateY(28px);
+    filter:    blur(4px);
+  }
+  to {
+    opacity:   1;
+    transform: translateY(0);
+    filter:    blur(0);
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   5. MICRO-INTERAZIONI SU ELEMENTI STATICI
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Card: solleva leggermente all'hover */
+.reveal .card {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s ease;
+}
+.reveal .card:hover {
+  transform:  translateY(-3px);
+  box-shadow: 0 12px 32px rgba(11,11,15,0.10);
+}
+
+/* Link: sfuma l'opacity */
+.reveal a {
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+/* Progress bar: già smooth, rafforziamo l'easing */
+.reveal .progress span {
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Pill: leggero pop all'hover */
+.reveal .pill {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter    0.2s ease;
+}
+.reveal .pill:hover {
+  transform: scale(1.06);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   6. ACCESSIBILITÀ — rispetta prefers-reduced-motion
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .slides section,
+  .reveal .slides section.present > *,
+  .reveal .slides section.slide-cover.present > *,
+  .reveal .fragment,
+  .reveal .fragment.visible,
+  .reveal .card,
+  .reveal .pill {
+    animation:  none !important;
+    transition: opacity 0.15s linear !important;
+    transform:  none !important;
+    filter:     none !important;
+  }
+}
