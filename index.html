@@ -1,195 +1,339 @@
 <!doctype html>
-<html>
+<html lang="it">
 
 <head>
     <meta charset="utf-8">
     <title>PRIVACY ONLINE - INVERNIZZI SIMONE - HUSMAN FRANCESCO CORNELIU</title>
     <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
-    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/beige.css">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/night.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --accent-green: #00e676;
+            --bg-dark: #12121f;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        .reveal {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .reveal h2 {
+            margin-bottom: 15px !important;
+        }
+
+        .highlightgreen {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .revealjs {
+            font-size: 15px;
+            opacity: 60%;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .title-logo {
+            width: 120px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0px 0px 10px rgba(0, 230, 118, 0.5));
+        }
+
+        .author-section {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 40px;
+            font-size: 22px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--card-border);
+        }
+
+        .author-section p {
+            margin: 5px 0;
+        }
+
+        .text-muted {
+            color: #8892b0;
+            font-size: 0.7em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .floating-icons {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            margin-bottom: 30px;
+        }
+
+        .floating-icons img {
+            position: absolute;
+            width: 60px;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.5));
+        }
+
+        .icon-ig {
+            bottom: 0;
+            left: 25%;
+            transform: rotate(-15deg);
+        }
+
+        .icon-wa {
+            bottom: 0;
+            right: 25%;
+            transform: rotate(10deg);
+        }
+
+        .icon-tk {
+            top: 10px;
+            left: 50%;
+            transform: rotate(-5deg) translateX(-50%);
+        }
+
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .agenda-grid li {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 24px;
+            text-align: left;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .cardscont {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .mac-card {
+            background-color: #1e1e2f;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .tools {
+            display: flex;
+            align-items: center;
+            padding: 1px 15px;
+            background: #141420;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .circle {
+            padding: 0 4px;
+        }
+
+        .box {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red {
+            background-color: #ff605c;
+        }
+
+        .yellow {
+            background-color: #ffbd44;
+        }
+
+        .green {
+            background-color: #00ca4e;
+        }
+
+        .card__content {
+            padding: 20px;
+        }
+
+        .card__content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: 600;
+            text-transform: none;
+        }
+
+        .card__content p {
+            font-size: 18px;
+            line-height: 1.4;
+            color: #ccd6f6;
+            margin: 0;
+        }
+
+        .fonte-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            color: var(--accent-green) !important;
+            border: 1px solid var(--accent-green);
+            border-radius: 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .fonte-link:hover {
+            background: var(--accent-green);
+            color: #000 !important;
+        }
+
+        .sources-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .quote-box {
+            font-size: 32px;
+            font-style: italic;
+            border-left: 5px solid var(--accent-green);
+            padding: 20px;
+            background: rgba(0, 230, 118, 0.1);
+            border-radius: 0 10px 10px 0;
+            margin-top: 30px;
+        }
+
+        .styled-list {
+            text-align: left;
+            font-size: 24px;
+            line-height: 1.6;
+        }
+
+        .styled-list ul {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .styled-list li {
+            margin-bottom: 8px;
+        }
+
+        .two-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .grid-4-cols {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            align-items: stretch;
+        }
+
+        .play-btn {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 8px 16px;
+            background-color: rgba(0, 230, 118, 0.1);
+            color: var(--accent-green) !important;
+            border: 1px solid var(--accent-green);
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .play-btn:hover {
+            background-color: var(--accent-green);
+            color: #12121f !important;
+        }
+
+        /* From Uiverse.io by kamehame-ha */
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 15px;
+            gap: 15px;
+            background-color: #181717;
+            outline: 3px #181717 solid;
+            outline-offset: -3px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: 400ms;
+        }
+
+        .button .text {
+            color: white;
+            font-weight: 700;
+            font-size: 1em;
+            transition: 400ms;
+        }
+
+        .button svg path {
+            transition: 400ms;
+        }
+
+        .button:hover {
+            background-color: white
+        }
+
+        .button:hover .text {
+            color: #181717;
+        }
+
+        .button:hover svg path {
+            fill: #181717;
+        }
+
+        .butcont {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </head>
-<style>
-    .title-logo {
-        width: 150px;
-        margin-bottom: 20px;
-    }
-
-    .author-section {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: flex-start;
-        margin-top: 40px;
-        font-size: 24px;
-        text-align: left;
-    }
-
-    .author-section p {
-        margin: 5px 0;
-    }
-
-    .text-muted {
-        color: #888;
-        font-size: 0.8em;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .floating-icons {
-        position: relative;
-        width: 100%;
-        height: 100px;
-        margin-bottom: 20px;
-    }
-
-    .floating-icons img {
-        position: absolute;
-        width: 70px;
-        opacity: 0.7;
-        transition: transform 0.3s ease;
-    }
-
-    .floating-icons img:hover {
-        opacity: 1;
-        transform: scale(1.1) rotate(0deg);
-    }
-
-    .icon-ig {
-        bottom: 0;
-        left: 15%;
-        transform: rotate(-15deg);
-    }
-
-    .icon-wa {
-        bottom: 0;
-        right: 15%;
-        transform: rotate(10deg);
-    }
-
-    .icon-tk {
-        top: 20px;
-        left: 50%;
-        transform: rotate(-5deg) translateX(-50%);
-    }
-
-    .slide-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 30px;
-    }
-
-    .slide-header img {
-        width: 100px;
-    }
-
-    .info-box {
-        border-left: 5px solid #5d5e5d;
-        padding: 20px;
-        text-align: left;
-        font-size: 28px;
-        line-height: 1.5;
-    }
-
-    .highlightgreen {
-        color: #4CAF50;
-        font-weight: bold;
-    }
-
-    .slide2text {
-        font-size: 24px;
-        margin-top: 30px;
-        text-align: center;
-        color: lightgray;
-        font-style: italic;
-    }
-
-    .fonte-link {
-        display: block;
-        margin-top: 20px;
-        font-size: 18px;
-        color: #888;
-        text-decoration: none;
-        text-align: right;
-        text-transform: uppercase;
-    }
-
-    #howisdatarevealed img {
-        width: 300px;
-        margin-bottom: 20px;
-    }
-
-    .cardscont {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: stretch;
-        /* Fa sì che tutte le card abbiano la stessa altezza */
-        gap: 15px;
-        width: 100%;
-    }
-
-    /* From Uiverse.io */
-    .card {
-        width: 250px;
-        min-height: 350px;
-        background-color: #e0e0e0;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .card__content {
-        padding: 15px;
-        text-align: left;
-        overflow-y: auto;
-    }
-
-    .card__content h3 {
-        font-size: 22px;
-        margin-bottom: 10px;
-        color: #333;
-    }
-
-    .card__content p {
-        font-size: 18px;
-        line-height: 1.3;
-        color: #444;
-        margin: 0;
-    }
-
-    .tools {
-        display: flex;
-        align-items: center;
-        padding: 9px;
-    }
-
-    .circle {
-        padding: 0 4px;
-    }
-
-    .box {
-        display: inline-block;
-        align-items: center;
-        width: 10px;
-        height: 10px;
-        padding: 1px;
-        border-radius: 50%;
-    }
-
-    .red {
-        background-color: #ff605c;
-    }
-
-    .yellow {
-        background-color: #ffbd44;
-    }
-
-    .green {
-        background-color: #00ca4e;
-    }
-</style>
 
 <body>
 
@@ -197,7 +341,7 @@
         <div class="slides">
 
             <section id="titleandnames">
-                <img src="online-privacy.png" class="title-logo" alt="Privacy Logo">
+                <img src="https://github.com/invernizzisimonestudente-maker/online-privacy-presentation/blob/main/online-privacy.png?raw=true" class="title-logo" alt="Privacy Logo">
                 <h1 class="r-fit-text">PRIVACY ONLINE</h1>
 
                 <div class="author-section">
@@ -205,6 +349,8 @@
                         <p class="text-muted">Una presentazione di:</p>
                         <p><strong>Invernizzi Simone</strong></p>
                         <p><strong>Husman Francesco Corneliu</strong></p>
+                        <p class="revealjs">tramite il framework JavaScript <a href="https://revealjs.com"
+                                target="_blank">reveal.js</a></p>
                     </div>
                     <div>
                         <p class="text-muted">Istituto:</p>
@@ -215,8 +361,7 @@
             </section>
 
             <section>
-                <section id="intro" data-background-color="#1a1a2e">
-
+                <section id="intro">
                     <div class="floating-icons">
                         <img src="https://github.com/invernizzisimonestudente-maker/online-privacy-presentation/blob/main/Instagram-Icon.png?raw=true"
                             class="icon-ig">
@@ -226,64 +371,66 @@
                             class="icon-tk">
                     </div>
 
-                    <p>
-                        Oggi utilizziamo internet ogni giorno: social, app, siti web.<br>
-                        Ogni volta che lo facciamo, lasciamo <span class="highlightgreen">tracce dei nostri dati
-                            personali</span>.
-                    </p>
-                    <p>
-                        In questa presentazione vedremo come vengono raccolti, come vengono usati e, soprattutto,
-                        <strong>come possiamo proteggerli</strong>.
-                    </p>
+                    <div class="glass-card">
+                        <p style="font-size: 28px; line-height: 1.5; margin: 0;">
+                            Oggi utilizziamo internet ogni giorno: social, app, siti web.<br><br>
+                            Ogni volta che lo facciamo, lasciamo <span class="highlightgreen">tracce dei nostri dati
+                                personali</span>.
+                            In questa presentazione vedremo come vengono raccolti, come vengono usati e, soprattutto,
+                            <strong>come possiamo proteggerli</strong>.<br>
+                            Anche quando non facciamo nulla, i nostri dati vengono comunque raccolti.
+                        </p>
+                    </div>
                 </section>
 
-                <section data-autoslide="1500">
-                    <h3>Di cosa parleremo:</h3>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 32px;">
-                        <li class="fragment fade-right">Dati Personali</li>
-                        <li class="fragment fade-right">I rischi per la privacy</li>
-                        <li class="fragment fade-right">Raccolta pubblica dei dati</li>
-                        <li class="fragment fade-right">Come proteggersi</li>
-                        <li class="fragment fade-right">A cosa servono i dati</li>
-                        <li class="fragment fade-right">Strumenti di protezione</li>
-                        <li class="fragment fade-right">Il GDPR</li>
-                        <li class="fragment fade-right">I Social Media</li>
+                <section>
+                    <h2>Di cosa parleremo</h2>
+                    <ul class="agenda-grid">
+                        <li class="fragment fade-up">Cosa sono i dati personali?</li>
+                        <li class="fragment fade-up">A cosa servono</li>
+                        <li class="fragment fade-up">I rischi</li>
+                        <li class="fragment fade-up">Raccolta pubblica</li>
+                        <li class="fragment fade-up">Come proteggersi</li>
+                        <li class="fragment fade-up">Il GDPR</li>
+                        <li class="fragment fade-up">I Social Media</li>
                     </ul>
                 </section>
             </section>
 
-            <section id="personaldata" data-background-color="#1a1a2e">
-                <div class="slide-header">
-                    <img src="personaldataicon.png" alt="Icona dati">
-                    <h3>Cosa sono i dati personali?</h3>
+            <section id="personaldata">
+                <div
+                    style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 20px;">
+                    <img src="https://github.com/invernizzisimonestudente-maker/online-privacy-presentation/blob/main/personaldataicon.png?raw=true" alt="Icona dati" width="60">
+                    <h2 style="margin: 0;">Cosa sono i dati personali?</h2>
                 </div>
 
-                <div class="info-box">
-                    <p>Sono tutte le informazioni che identificano (o rendono identificabile) una persona fisica. Ad
-                        esempio:</p>
-                    <ul>
-                        <li>Nome, indirizzo e numero di telefono</li>
-                        <li>Indirizzo Email e foto</li>
-                        <li>Posizione GPS</li>
-                        <li>Preferenze di navigazione online</li>
+                <div class="glass-card styled-list">
+                    <p style="font-size: 22px; margin-bottom: 10px;">Sono tutte le informazioni che rendono
+                        identificabile una persona. Ad esempio:</p>
+                    <ul style="font-size: 20px;">
+                        <li>Nome, codice fiscale, email</li>
+                        <li>Foto e indirizzo</li>
+                        <li>Indirizzo IP, posizione GPS o cronologia di navigazione</li>
+                        <li>Opinioni e orientamento politico/religioso</li>
                     </ul>
-                    <p class="slide2text">
-                        Questi dati vengono <span class="highlightgreen">costantemente raccolti</span> da app e siti web e possono essere usati per scopi
-                        pubblicitari o venduti a terzi.
-                    </p>
                 </div>
-                <a class="fonte-link"
-                    href="https://www.garanteprivacy.it/home/diritti/cosa-intendiamo-per-dati-personali"
-                    target="_blank">Fonte</a>
+
+                <p style="font-size: 22px; color: #8892b0; font-style: italic;">
+                    Questi dati vengono <span class="highlightgreen">costantemente raccolti</span> da app e siti web e
+                    possono essere usati per scopi pubblicitari o <span class="highlightgreen">venduti a terzi</span>.
+                </p>
+
             </section>
+
             <section id="howisdatarevealed">
                 <section data-auto-animate>
-                    <h1>Come vengono rivelati i dati?</h1>
+                    <h3 style="font-size: 2.5em;">Come vengono rivelati i dati?</h3>
                 </section>
                 <section data-auto-animate>
-                    <h1 style="font-size: 2em; margin-bottom: 50px;">Come vengono rivelati i dati?</h1>
+                    <h3>Come vengono rivelati i dati?</h3>
+
                     <div class="cardscont">
-                        <div class="card fragment fade-up">
+                        <div class="mac-card">
                             <div class="tools">
                                 <div class="circle"><span class="red box"></span></div>
                                 <div class="circle"><span class="yellow box"></span></div>
@@ -296,7 +443,7 @@
                             </div>
                         </div>
 
-                        <div class="card fragment fade-up">
+                        <div class="mac-card fragment fade-up">
                             <div class="tools">
                                 <div class="circle"><span class="red box"></span></div>
                                 <div class="circle"><span class="yellow box"></span></div>
@@ -304,11 +451,13 @@
                             </div>
                             <div class="card__content">
                                 <h3>📱 Social Media</h3>
-                                <p>Post, like e storie rivelano i nostri interessi e le nostre abitudini quotidiane.</p>
+                                <p>Post, like e storie rivelano i nostri interessi e le nostre abitudini
+                                    quotidiane.<br>Anche il tempo che passiamo su un post o una storia viene tracciato.
+                                </p>
                             </div>
                         </div>
 
-                        <div class="card fragment fade-up">
+                        <div class="mac-card fragment fade-up">
                             <div class="tools">
                                 <div class="circle"><span class="red box"></span></div>
                                 <div class="circle"><span class="yellow box"></span></div>
@@ -316,11 +465,12 @@
                             </div>
                             <div class="card__content">
                                 <h3>📝 Consensi</h3>
-                                <p>Accettiamo spesso contratti lunghi senza leggere, cedendo l'uso dei nostri dati.</p>
+                                <p>Accettiamo spesso contratti lunghi senza leggere, cedendo l'uso dei nostri dati, che
+                                    spesso sono scritti in modo complesso per essere accettati velocemente.</p>
                             </div>
                         </div>
 
-                        <div class="card fragment fade-up">
+                        <div class="mac-card fragment fade-up">
                             <div class="tools">
                                 <div class="circle"><span class="red box"></span></div>
                                 <div class="circle"><span class="yellow box"></span></div>
@@ -329,36 +479,172 @@
                             <div class="card__content">
                                 <h3>📍 Posizione</h3>
                                 <p>Il GPS registra i luoghi che visitiamo, creando una mappa precisa dei nostri
-                                    movimenti.
-                                </p>
+                                    movimenti.<br>Anche quando l’app è chiusa, alcuni servizi continuano a raccogliere
+                                    dati.</p>
                             </div>
                         </div>
                     </div>
                 </section>
             </section>
-            <section id="whatisdatafor" data-background-color="#1a1a2e">
-                <h1>A cosa servono i dati?</h1>
-                <a href="" target="_blank" class="fonte-link">Fonte</a>
+
+            <section id="whatisdatafor">
+                <h2>A cosa servono i dati?</h2>
+                <div class="grid-4-cols">
+                    <div class="glass-card">
+                        <h3 style="font-size: 20px;"><span class="highlightgreen">Profilazione</span></h3>
+                        <p style="font-size: 16px; margin-bottom: 0;">Creare una copia dei gusti e delle abitudini delle
+                            persone.</p>
+                    </div>
+
+                    <div class="glass-card fragment fade-up">
+                        <h3 style="font-size: 20px;"><span class="highlightgreen">Marketing</span></h3>
+                        <p style="font-size: 16px; margin-bottom: 10px;">Mostrare la pubblicità giusta al momento
+                            giusto.</p>
+                        <a href="https://www.youtube.com/embed/zBnDWSvaQ1I?start=232&autoplay=1" data-preview-link
+                            class="play-btn" style="font-size: 14px; padding: 5px 10px;">
+                            ▶ Esempio
+                        </a>
+                    </div>
+
+                    <div class="glass-card fragment fade-up">
+                        <h3 style="font-size: 20px;"><span class="highlightgreen">Miglioramento</span></h3>
+                        <p style="font-size: 16px; margin-bottom: 0;">Capire come gli utenti usano un'app per renderla
+                            migliore.</p>
+                    </div>
+
+                    <div class="glass-card fragment fade-up">
+                        <h3 style="font-size: 20px;"><span class="highlightgreen">Vendita</span></h3>
+                        <p style="font-size: 16px; margin-bottom: 0;">In alcuni casi i dati vengono venduti ad altre
+                            aziende.</p>
+                    </div>
+                </div>
             </section>
+
             <section id="gdpr">
-                <h1>Il GDPR</h1>
-                <a href="" target="_blank" class="fonte-link">Fonte</a>
+                <h2>Il GDPR</h2>
+                <p style="font-size: 26px; margin-bottom: 30px;">
+                    Il Regolamento Generale sulla Protezione dei Dati (GDPR) è la normativa europea che <span
+                        class="highlightgreen">ci tutela</span> online.
+                </p>
+
+                <div class="glass-card styled-list">
+                    <ul>
+                        <li>Abbiamo il diritto di sapere <span class="highlightgreen">chi</span> ha i nostri dati e
+                            perchè.</li>
+                        <li>Il trattamento deve essere basato su una nostra scelta.</li>
+                        <li>Possiamo richiedere la cancellazione dei dati se non più necessari.</li>
+                        <li>Possiamo modificare i dati errati.</li>
+                        <li>Possiamo richiedere una copia dei nostri dati.</li>
+                    </ul>
+                </div>
+                <a href="https://www.edpb.europa.eu/sme-data-protection-guide/data-protection-basics_it" target="_blank"
+                    class="fonte-link">Fonte Europa.eu</a>
             </section>
-            <section id="privacyrisks" data-background-color="#1a1a2e">
-                <h1>I rischi per la privacy</h1>
-                <a href="" target="_blank" class="fonte-link">Fonte</a>
+
+            <section id="privacyrisks">
+                <h3>I rischi per la privacy</h3>
+
+                <div class="styled-list">
+                    <div class="glass-card">
+                        <strong>🎣 <span class="highlightgreen">Phishing</span>:</strong> tecnica di truffa online in
+                        cui i criminali si fingono enti attendibili tramite email, SMS o chiamate per rubare dati
+                        sensibili allegando link a portali falsi.
+                    </div>
+                    <div class="glass-card">
+                        <strong>🔓 <span class="highlightgreen">Data Breach</span>:</strong> violazione di sicurezza che
+                        comporta la distribuzione non autorizzata ai dati personali trattati.
+                    </div>
+                    <div class="glass-card">
+                        <strong>🕵️‍♂️ <span class="highlightgreen">Doxing</span>:</strong> cercare e diffondere online
+                        informazioni personali e private di una persona, solitamente con intento malevolo.
+                    </div>
+                    <div class="glass-card">
+                        <strong>🕵️‍♂️ <span class="highlightgreen">Furto d'Identità</span>:</strong> spacciarsi per
+                        qualcun'altro per ottenere vantaggi.
+                    </div>
+                </div>
+
+                <div class="sources-container">
+                    <a href="https://www.microsoft.com/it-it/security/business/security-101/what-is-phishing"
+                        target="_blank" class="fonte-link">Fonte (Phishing)</a>
+                    <a href="https://www.garanteprivacy.it/data-breach" target="_blank" class="fonte-link">Fonte (Data
+                        Breach)</a>
+                    <a href="https://it.wikipedia.org/wiki/Doxing" target="_blank" class="fonte-link">Fonte (Doxing)</a>
+                    <a href="https://it.wikipedia.org/wiki/Furto_d%27identit%C3%A0#:~:text=Il%20furto%20d%27identit%C3%A0%5B1%5D%20%C3%A8%20una%20condotta%20criminale%20perpetrata%20spacciandosi%20per%20un%27altra%20persona%20e%20rivolta%2C%20in%20molti%20casi%2C%20a%20ottenere%20indebitamente%20denaro%20o%20vantaggi."
+                        target="_blank" class="fonte-link">Fonte (Furto d'identità)</a>
+                </div>
             </section>
+
             <section id="protectprivacy">
-                <h1>Come proteggersi?</h1>
-                <a href="" target="_blank" class="fonte-link">Fonte</a>
+                <h2>Come proteggersi?</h2>
+
+                <div class="two-cols styled-list">
+                    <div class="glass-card">
+                        <h4 style="color: var(--accent-green); text-transform: none;">Abitudini sicure</h4>
+                        <ul style="font-size: 20px;">
+                            <li>Non cliccare "Accetta tutto" senza leggere i termini.</li>
+                            <li>Cambia spesso le password e non usare sempre la stessa.</li>
+                            <li>Non pubblicare dati personali online.</li>
+                            <li>Usare password lunghe (almeno 12 caratteri) e con caratteri speciali.</li>
+                            <li>Non usare Wi-Fi pubblici senza protezione.</li>
+                            <li>Aggiornare sempre app e sistema operativo.</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card">
+                        <h4 style="color: var(--accent-green); text-transform: none; margin-bottom: 10px;">Strumenti
+                        </h4>
+                        <ul style="font-size: 20px; line-height: 1.3;">
+                            <li><strong>2FA:</strong> un secondo livello di sicurezza (codice via SMS/email) oltre alla
+                                password.</li>
+                            <li><strong>VPN:</strong> software che nasconde la tua reale posizione geografica.</li>
+                            <li><strong>Browser sicuri:</strong> usa <a href="https://librewolf.net/"
+                                    style="color: #aba9a9;" target="_blank">LibreWolf</a> o <a href="https://brave.com/"
+                                    style="color: #aba9a9;" target="_blank">Brave</a>.</li>
+                            <li><strong>Estensioni:</strong> installa <a
+                                    href="https://chromewebstore.google.com/detail/ddkjiahejlhfcafbddmgiahcphecmpfh"
+                                    style="color: #aba9a9;" target="_blank">uBlock Origin</a> per bloccare tracciamenti
+                                e
+                                pubblicità.</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
-            <section id="social" data-background-color="#1a1a2e">
-                <h1>I Social Media</h1>
-                <a href="" target="_blank" class="fonte-link">Fonte</a>
+
+            <section id="social">
+                <h2>I Social Media</h2>
+
+                <div class="glass-card styled-list">
+                    <ul>
+                        <li>Gli algoritmi ci mostrano solo ciò che ci piace, basandosi sui nostri dati.</li>
+                        <li>Impostazioni di privacy: è importante controllare chi può vedere i nostri post.</li>
+                    </ul>
+                </div>
+
+                <div class="quote-box">
+                    "Se non stai pagando per il prodotto, il prodotto sei tu."
+                </div>
             </section>
+
             <section id="conclusion&websites">
-                <h1>Conclusione</h1>
-                <a href="" target="_blank" class="fonte-link">Fonte</a>
+                <h1 style="font-size: 3em; color: var(--accent-green);">Conclusione</h1>
+                <p>La privacy online è una responsabilità di tutti.</p>
+                <div class="fadeinfinale fragment fade-in">
+                    <p style="font-size: 24px;">Grazie per l'attenzione!</p>
+                    <!-- From Uiverse.io by kamehame-ha -->
+                    <div class="butcont">
+                        <button class="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 0.296997C5.37 0.296997 0 5.67 0 12.297C0 17.6 3.438 22.097 8.205 23.682C8.805 23.795 9.025 23.424 9.025 23.105C9.025 22.82 9.015 22.065 9.01 21.065C5.672 21.789 4.968 19.455 4.968 19.455C4.422 18.07 3.633 17.7 3.633 17.7C2.546 16.956 3.717 16.971 3.717 16.971C4.922 17.055 5.555 18.207 5.555 18.207C6.625 20.042 8.364 19.512 9.05 19.205C9.158 18.429 9.467 17.9 9.81 17.6C7.145 17.3 4.344 16.268 4.344 11.67C4.344 10.36 4.809 9.29 5.579 8.45C5.444 8.147 5.039 6.927 5.684 5.274C5.684 5.274 6.689 4.952 8.984 6.504C9.944 6.237 10.964 6.105 11.984 6.099C13.004 6.105 14.024 6.237 14.984 6.504C17.264 4.952 18.269 5.274 18.269 5.274C18.914 6.927 18.509 8.147 18.389 8.45C19.154 9.29 19.619 10.36 19.619 11.67C19.619 16.28 16.814 17.295 14.144 17.59C14.564 17.95 14.954 18.686 14.954 19.81C14.954 21.416 14.939 22.706 14.939 23.096C14.939 23.411 15.149 23.786 15.764 23.666C20.565 22.092 24 17.592 24 12.297C24 5.67 18.627 0.296997 12 0.296997Z"
+                                    fill="white"></path>
+                            </svg>
+                            <a href="https://github.com/invernizzisimonestudente-maker/online-privacy-presentation/"
+                                class="text">Guarda il progetto su GitHub!</a>
+                        </button>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
@@ -372,7 +658,10 @@
             overview: true,
             navigationMode: 'linear',
             hash: true,
-            history: true
+            history: true,
+            backgroundTransition: 'slide',
+            transition: 'slide',
+            transitionSpeed: 'default',
         })
     </script>
 
